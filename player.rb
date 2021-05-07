@@ -29,7 +29,11 @@ class Player
     score
   end
 
-  private
+  def make_bet
+    self.bank -= 10
+  end
+
+  protected
 
   def add_aces(score, aces)
     if score + 11 + (aces - 1) * 1 <= 21
@@ -39,5 +43,6 @@ class Player
     end
   end
 
+  attr_accessor :bank
   attr_writer :cards
 end

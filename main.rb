@@ -10,6 +10,7 @@ require_relative 'deck'
 class Main
   def initialize
     @interface = Interface.new
+    @bank = 0
   end
 
   def blackjack
@@ -23,9 +24,13 @@ class Main
     interface.show_cards(user.cards, false, user.name)
     interface.show_cards(dealer.cards, true)
     interface.show_score(user)
+
+    user.make_bet
+    dealer.make_bet
+    @bank += 20
   end
 
   private
 
-  attr_accessor :interface
+  attr_accessor :interface, :bank
 end
