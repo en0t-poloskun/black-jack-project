@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Player
-  attr_accessor :cards, :bank
+  attr_reader :cards, :bank
 
   def initialize
     @bank = 100
@@ -40,6 +40,8 @@ class Player
   end
 
   protected
+
+  attr_writer :cards, :bank
 
   def add_aces(score, aces)
     if score + 11 + (aces - 1) * 1 <= 21

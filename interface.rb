@@ -28,6 +28,7 @@ class Interface
   end
 
   def finish(user, dealer)
+    puts("\nОткрываем карты...")
     show_cards(user.cards, false, user.name)
     show_cards(dealer.cards, false)
     show_score(user.score, user.name)

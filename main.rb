@@ -44,14 +44,14 @@ class Main
   end
 
   def user_move
-    choice = interface.user_move
+    choice = user.cards.size == 3 && dealer.cards.size == 3 ? 3 : interface.user_move
     case choice
     when 1
       dealer_move
     when 2
       user.add_card(deck)
       interface.current_situation(user, dealer)
-      dealer_move
+      dealer.cards.size == 3 ? finish : dealer_move
     when 3
       finish
     end
