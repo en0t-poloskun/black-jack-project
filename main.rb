@@ -15,34 +15,49 @@ class Main
 
   def blackjack
     name = interface.name
-    user = User.new(name)
-    dealer = Dealer.new
-    # game
-    deck = Deck.new
+    self.user = User.new(name)
+    self.dealer = Dealer.new
+    game
+  end
+
+  private
+
+  def game
+    distribution
+    bet
+    user_move
+  end
+
+  def distribution
+    self.deck = Deck.new
+    interface.distribution
     2.times { user.add_card(deck) }
     2.times { dealer.add_card(deck) }
-    interface.show_cards(user.cards, false, user.name)
-    interface.show_cards(dealer.cards, true)
-    interface.show_score(user)
+    interface.current_situation(user, dealer)
+  end
 
+  def bet
     user.make_bet
     dealer.make_bet
     @bank += 20
+  end
 
+  def user_move
     choice = interface.move
     case choice
     when 1
-      # smth
+      dealer_move
     when 2
-      user.add_card(d)
+      user.add_card(deck)
+      interface.current_situation(user, dealer)
     when 3
       finish
     end
   end
 
-  private
+  def dealer_move; end
 
   def finish; end
 
-  attr_accessor :interface, :bank
+  attr_accessor :interface, :bank, :deck, :user, :dealer
 end

@@ -6,8 +6,26 @@ class Interface
     gets.chomp
   end
 
+  def distribution
+    puts("\nРаздача карт...")
+  end
+
+  def current_situation(user, dealer)
+    show_cards(user.cards, false, user.name)
+    show_cards(dealer.cards, true)
+    show_score(user)
+  end
+
+  def move
+    puts("\nВаш ход! \n 1. Пропустить\n 2. Добавить карту\n 3. Открыть карты\n\n")
+    print('Введите номер операции: ')
+    gets.to_i
+  end
+
+  private
+
   def show_cards(cards, secret, name = 'Dealer')
-    print("Карты игрока #{name}:")
+    print("\nКарты игрока #{name}:")
     if secret
       cards.each { |_card| print(' *') }
     else
@@ -17,12 +35,6 @@ class Interface
   end
 
   def show_score(player)
-    puts("Сумма очков игрока #{player.name}: #{player.score}")
-  end
-
-  def move
-    puts("Ваш ход! \n 1. Пропустить\n 2. Добавить карту\n 3. Открыть карты\n\n")
-    print('Введите номер операции: ')
-    n = gets.to_i
+    puts("\nСумма очков игрока #{player.name}: #{player.score}")
   end
 end
