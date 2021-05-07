@@ -23,10 +23,19 @@ class Interface
     show_score(dealer.score)
   end
 
-  def move
+  def user_move
     puts("\nВаш ход! \n 1. Пропустить\n 2. Добавить карту\n 3. Открыть карты\n\n")
     print('Введите номер операции: ')
     gets.to_i
+  end
+
+  def dealer_move(dealer)
+    puts("\nХод противника!")
+    if dealer.score < 17
+      puts('Противник взял карту')
+    else
+      puts('Противник пропустил ход')
+    end
   end
 
   def announce(winner)

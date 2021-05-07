@@ -43,7 +43,7 @@ class Main
   end
 
   def user_move
-    choice = interface.move
+    choice = interface.user_move
     case choice
     when 1
       dealer_move
@@ -56,7 +56,11 @@ class Main
     end
   end
 
-  def dealer_move; end
+  def dealer_move
+    interface.dealer_move(dealer)
+    dealer.move(deck)
+    user_move
+  end
 
   def finish
     interface.finish(user, dealer)
