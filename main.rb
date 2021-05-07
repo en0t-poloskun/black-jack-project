@@ -16,6 +16,13 @@ class Main
     name = interface.name
     user = User.new(name)
     dealer = Dealer.new
+    # game
+    deck = Deck.new
+    2.times { user.add_card(deck) }
+    2.times { dealer.add_card(deck) }
+    interface.show_cards(user.cards, false, user.name)
+    interface.show_cards(dealer.cards, true)
+    interface.show_score(user)
   end
 
   private
