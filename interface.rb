@@ -10,6 +10,17 @@ class Interface
     puts("\nРаздача карт...")
   end
 
+  def bet(user, dealer, bank)
+    puts("\nСтавки сделаны!")
+    show_bank(user, dealer)
+    puts("Призовой фонд: #{bank}")
+  end
+
+  def show_bank(user, dealer)
+    puts("Банк игрока #{user.name}: #{user.bank}")
+    puts("Банк игрока Dealer: #{dealer.bank}")
+  end
+
   def current_situation(user, dealer)
     show_cards(user.cards, false, user.name)
     show_cards(dealer.cards, true)

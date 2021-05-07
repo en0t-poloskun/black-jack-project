@@ -40,6 +40,7 @@ class Main
     user.make_bet
     dealer.make_bet
     @bank += 20
+    interface.bet(user, dealer, bank)
   end
 
   def user_move
@@ -73,6 +74,7 @@ class Main
     end
     self.bank = 0
     interface.announce(winner)
+    interface.show_bank(user, dealer)
   end
 
   def choose_winner
