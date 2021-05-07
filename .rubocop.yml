@@ -4,3 +4,7 @@ Style/Documentation:
 Metrics/MethodLength:
   Enabled: true
   Max: 15
+
+Metrics/AbcSize:
+  Enabled: true
+  Max: 25

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Player
-  attr_reader :cards
+  attr_accessor :cards, :bank
 
   def initialize
     @bank = 100
@@ -35,6 +35,10 @@ class Player
     self.bank -= 10
   end
 
+  def add(money)
+    self.bank += money
+  end
+
   protected
 
   def add_aces(score, aces)
@@ -44,7 +48,4 @@ class Player
       score + aces * 1
     end
   end
-
-  attr_accessor :bank
-  attr_writer :cards
 end

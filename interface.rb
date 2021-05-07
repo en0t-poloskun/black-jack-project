@@ -13,13 +13,30 @@ class Interface
   def current_situation(user, dealer)
     show_cards(user.cards, false, user.name)
     show_cards(dealer.cards, true)
-    show_score(user)
+    show_score(user.score, user.name)
+  end
+
+  def finish(user, dealer)
+    show_cards(user.cards, false, user.name)
+    show_cards(dealer.cards, false)
+    show_score(user.score, user.name)
+    show_score(dealer.score)
   end
 
   def move
     puts("\nВаш ход! \n 1. Пропустить\n 2. Добавить карту\n 3. Открыть карты\n\n")
     print('Введите номер операции: ')
     gets.to_i
+  end
+
+  def announce(winner)
+    if winner.nil?
+      puts("\nНичья!")
+    elsif winner.instance_of?(User)
+      puts("\nВы победили!")
+    elsif winner.instance_of?(Dealer)
+      puts("\nВы проиграли...")
+    end
   end
 
   private
@@ -34,7 +51,7 @@ class Interface
     print("\n")
   end
 
-  def show_score(player)
-    puts("\nСумма очков игрока #{player.name}: #{player.score}")
+  def show_score(score, name = 'Dealer')
+    puts("\nСумма очков игрока #{name}: #{score}")
   end
 end
