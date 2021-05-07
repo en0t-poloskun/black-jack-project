@@ -19,4 +19,10 @@ class Interface
   def show_score(player)
     puts("Сумма очков игрока #{player.name}: #{player.score}")
   end
+
+  def move
+    puts("Ваш ход! \n 1. Пропустить\n 2. Добавить карту\n 3. Открыть карты\n\n")
+    print('Введите номер операции: ')
+    n = gets.to_i
+  end
 end

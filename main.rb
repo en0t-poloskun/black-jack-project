@@ -28,9 +28,21 @@ class Main
     user.make_bet
     dealer.make_bet
     @bank += 20
+
+    choice = interface.move
+    case choice
+    when 1
+      # smth
+    when 2
+      user.add_card(d)
+    when 3
+      finish
+    end
   end
 
   private
+
+  def finish; end
 
   attr_accessor :interface, :bank
 end

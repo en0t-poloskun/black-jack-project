@@ -9,6 +9,8 @@ class Player
   end
 
   def add_card(deck)
+    return if card.size > 2
+
     cards << deck.cards.shift
   end
 
