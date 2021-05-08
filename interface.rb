@@ -23,7 +23,12 @@ class Interface
       true
     when /^n$/i
       false
+    else
+      raise 'Unknown command'
     end
+  rescue RuntimeError => e
+    puts(e.message)
+    retry
   end
 
   def show_bank(user, dealer)

@@ -9,7 +9,7 @@ class Player
   end
 
   def add_card(deck)
-    return if cards.size > 2
+    raise 'Нельзя иметь больше 3-х карт' if cards.size > 2
 
     cards << deck.cards.shift
   end

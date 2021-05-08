@@ -7,4 +7,10 @@ class User < Player
     @name = name
     super()
   end
+
+  def make_bet
+    raise "У #{name} нет денег для продолжения игры" if bank < 10
+
+    super
+  end
 end

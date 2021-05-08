@@ -26,8 +26,8 @@ class Main
   private
 
   def game
-    distribution
     bet
+    distribution
     user_move
   end
 
@@ -44,6 +44,8 @@ class Main
     dealer.make_bet
     @bank += 20
     interface.bet(user, dealer, bank)
+  rescue RuntimeError => e
+    abort e.message
   end
 
   def user_move
@@ -52,12 +54,15 @@ class Main
     when 1
       dealer_move
     when 2
-      user.add_card(deck)
-      interface.current_situation(user, dealer)
-      dealer.cards.size == 3 ? finish : dealer_move
+      add_card
     when 3
       finish
+    else
+      raise 'Unknown command'
     end
+  rescue RuntimeError => e
+    puts(e.message)
+    retry
   end
 
   def dealer_move
@@ -92,6 +97,12 @@ class Main
     elsif dealer.score > user.score
       dealer
     end
+  end
+
+  def add_card
+    user.add_card(deck)
+    interface.current_situation(user, dealer)
+    dealer.cards.size == 3 ? finish : dealer_move
   end
 
   def nullify
