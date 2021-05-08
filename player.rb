@@ -14,6 +14,10 @@ class Player
     cards << deck.cards.shift
   end
 
+  def fold
+    self.cards = []
+  end
+
   def score
     score = 0
     aces = 0

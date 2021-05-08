@@ -17,7 +17,10 @@ class Main
     name = interface.name
     self.user = User.new(name)
     self.dealer = Dealer.new
-    game
+    loop do
+      game
+      break unless interface.again?
+    end
   end
 
   private
@@ -72,7 +75,7 @@ class Main
     else
       winner.add(bank)
     end
-    self.bank = 0
+    nullify
     interface.announce(winner)
     interface.show_bank(user, dealer)
   end
@@ -89,6 +92,12 @@ class Main
     elsif dealer.score > user.score
       dealer
     end
+  end
+
+  def nullify
+    self.bank = 0
+    user.fold
+    dealer.fold
   end
 
   attr_accessor :interface, :bank, :deck, :user, :dealer

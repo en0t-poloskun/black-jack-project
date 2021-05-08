@@ -16,6 +16,16 @@ class Interface
     puts("Призовой фонд: #{bank}")
   end
 
+  def again?
+    puts("\nИгра окончена! Хотите сыграть еще раз? [y/n]")
+    case gets.chomp
+    when /^y$/i
+      true
+    when /^n$/i
+      false
+    end
+  end
+
   def show_bank(user, dealer)
     puts("Банк игрока #{user.name}: #{user.bank}")
     puts("Банк игрока Dealer: #{dealer.bank}")
