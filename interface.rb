@@ -37,15 +37,15 @@ class Interface
   end
 
   def current_situation(user, dealer)
-    show_cards(user.cards, false, user.name)
-    show_cards(dealer.cards, true)
+    show_cards(user.hand.cards, false, user.name)
+    show_cards(dealer.hand.cards, true)
     show_score(user.score, user.name)
   end
 
   def finish(user, dealer)
     puts("\nОткрываем карты...")
-    show_cards(user.cards, false, user.name)
-    show_cards(dealer.cards, false)
+    show_cards(user.hand.cards, false, user.name)
+    show_cards(dealer.hand.cards, false)
     show_score(user.score, user.name)
     show_score(dealer.score)
   end

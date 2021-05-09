@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require_relative 'hand'
 require_relative 'player'
 require_relative 'user'
 require_relative 'dealer'
@@ -49,7 +50,7 @@ class Main
   end
 
   def user_move
-    choice = user.cards.size == 3 && dealer.cards.size == 3 ? 3 : interface.user_move
+    choice = user.hand.full? && dealer.hand.full? ? 3 : interface.user_move
     case choice
     when 1
       dealer_move
@@ -102,7 +103,7 @@ class Main
   def add_card
     user.add_card(deck)
     interface.current_situation(user, dealer)
-    dealer.cards.size == 3 ? finish : dealer_move
+    dealer.hand.full? ? finish : dealer_move
   end
 
   def nullify

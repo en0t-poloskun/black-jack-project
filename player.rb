@@ -1,38 +1,23 @@
 # frozen_string_literal: true
 
 class Player
-  attr_reader :cards, :bank
+  attr_reader :hand, :bank, :score
 
   def initialize
     @bank = 100
-    @cards = []
+    @hand = Hand.new
+    @score = 0
   end
 
   def add_card(deck)
-    raise 'Нельзя иметь больше 3-х карт' if cards.size > 2
+    raise 'Нельзя иметь больше 3-х карт' if hand.full?
 
-    cards << deck.cards.shift
+    hand.add(deck.cards.shift)
+    self.score = hand.score
   end
 
   def fold
-    self.cards = []
-  end
-
-  def score
-    score = 0
-    aces = 0
-    cards.each do |card|
-      case card.value
-      when /^\d+$/
-        score += card.value.to_i
-      when /^(J|Q|K)$/
-        score += 10
-      when 'A'
-        aces += 1
-      end
-    end
-    score = add_aces(score, aces) if aces != 0
-    score
+    self.hand = Hand.new
   end
 
   def make_bet
@@ -45,13 +30,5 @@ class Player
 
   protected
 
-  attr_writer :cards, :bank
-
-  def add_aces(score, aces)
-    if score + 11 + (aces - 1) * 1 <= 21
-      score + 11 + (aces - 1) * 1
-    else
-      score + aces * 1
-    end
-  end
+  attr_writer :hand, :bank, :score
 end
